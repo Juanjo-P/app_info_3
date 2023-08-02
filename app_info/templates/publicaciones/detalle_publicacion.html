@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block contenido %}
+{{publicacion.titulo}}
+{{publicacion.categoria}}
+{{publicacion.empresa}}
+{{publicacion.descripcion}}
+{{publicacion.published}}
+{{publicacion.imagen}}
+<br>
+<hr>
+<h2>Comentarios:</h2>
+{%for comentario in comentarios %}
+    <p><strong>{{ Comentarios.autor }}</strong></p>
+    <p>{{ Comentarios.mensaje }}</p>
+    <hr>
+{%endfor%}
+
+<form method="POST" action="{% url 'apps.publicaciones:agregar_comentario' pk=publicacion.id %}">
+    {%csrf_token%}
+    {{comentario_form.as_p}}
+    <button type="submit">Agregar comentario
+    </button>
+
+</form>
+
+
+
+
+{%endblock%}

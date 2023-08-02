@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block contenido %}
+<div class="main-container" style="text-align: center; margin-top: 12%;">
+    
+    <form method="POST" action="{% url 'apps.publicaciones:agregar_publicaciones' %}/" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+
+    <button type="submit">Publicar noticia
+    </button>
+    
+</form>
+</div>
+{% endblock %}
